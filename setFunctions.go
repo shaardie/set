@@ -4,7 +4,7 @@ func Difference(a Set, b Set) (Set, error) {
 
 	// a is countable
 	if a.Countable() {
-		newSet := elementSet{}
+		newSet := elementSet{make(map[interface{}]bool)}
 
 		elements, err := a.List()
 		if err != nil {
