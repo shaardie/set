@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestContains(t *testing.T) {
+func TestElementSetContains(t *testing.T) {
 	elements := map[interface{}]bool{
 		"string": true,
 		true:     false,
@@ -31,17 +31,15 @@ func TestContains(t *testing.T) {
 	}
 }
 
-func TestCountable(t *testing.T) {
+func TestElementSetCountable(t *testing.T) {
 	set := elementSet{}
-	if countable, err := set.Countable(); err != nil {
-		t.Fatal(err)
-	} else if !countable {
+	if !set.Countable() {
 		t.Error("elementSet not countable...ridiculous!")
 	}
 }
 
-func TestCardinality(t *testing.T) {
-	check_number := func(set elementSet, t *testing.T, should int64) {
+func TestElementSetCardinality(t *testing.T) {
+	check_number := func(set elementSet, t *testing.T, should uint64) {
 		if number, err := set.Cardinality(); err != nil {
 			t.Fatal(err)
 		} else if number != should {
