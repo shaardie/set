@@ -126,7 +126,7 @@ func Join(a Set, b Set) (Set, error) {
 				return true, nil
 			}
 		}
-    return false, nil
+		return false, nil
 	}
 	return functionSet{newContains}, nil
 }
