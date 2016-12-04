@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/shaardie/set.svg?branch=master)](https://travis-ci.org/shaardie/set)
-
+[![GoDoc](https://godoc.org/github.com/shaardie/set?status.svg)](http://godoc.org/github.com/mattn/go-sqlite3)
 
 # Description
 
