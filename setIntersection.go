@@ -3,20 +3,20 @@ package set
 func Intersection(a Set, b Set) (Set, error) {
 	// a is countable
 	if a.Countable() {
-		return finitIntersection(a, b)
+		return countableIntersection(a, b)
 	}
 
 	// b is countable
 	if b.Countable() {
-		return finitIntersection(b, a)
+		return countableIntersection(b, a)
 	}
 
 	// Both not countable
-	return infiniteIntersection(a, b)
+	return notCountableIntersection(a, b)
 }
 
-func finitIntersection(a Set, b Set) (Set, error) {
-	newSet := elementSet{}
+func countableIntersection(a Set, b Set) (Set, error) {
+	newSet := elementSet{make(map[interface{}]bool)}
 
 	elements, err := a.List()
 	if err != nil {
@@ -35,7 +35,7 @@ func finitIntersection(a Set, b Set) (Set, error) {
 	return newSet, nil
 }
 
-func infiniteIntersection(a Set, b Set) (Set, error) {
+func notCountableIntersection(a Set, b Set) (Set, error) {
 	// both not countable
 	newContains := func(x interface{}) (bool, error) {
 		if inA, err := a.Contains(x); err != nil {
@@ -53,7 +53,7 @@ func infiniteIntersection(a Set, b Set) (Set, error) {
 
 		// if here, x is in b
 		return true, nil
-
 	}
+
 	return functionSet{newContains}, nil
 }
