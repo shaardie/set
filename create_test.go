@@ -4,7 +4,7 @@ import "testing"
 
 func TestCreateFromArray(t *testing.T) {
 	list := []interface{}{1, 2, 3, 4}
-	set := createFromArray(list)
+	set := CreateFromArray(list)
 	if _, ok := set.(elementSet); !ok {
 		t.Error("Wrong type")
 	}
@@ -18,7 +18,7 @@ func TestCreateFromArray(t *testing.T) {
 }
 
 func TestCreateFromFunc(t *testing.T) {
-	set := createFromFunc(func(interface{}) (bool, error) {
+	set := CreateFromFunc(func(interface{}) (bool, error) {
 		return true, nil
 	})
 	if _, ok := set.(functionSet); !ok {
