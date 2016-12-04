@@ -28,7 +28,7 @@ func (set elementSet) List() ([]interface{}, error) {
 
 	number, err := set.Cardinality()
 	if err != nil {
-		return []interface{}{}, nil
+		return []interface{}{}, err
 	}
 
 	var list = make([]interface{}, 0, number)
