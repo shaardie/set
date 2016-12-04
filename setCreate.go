@@ -7,3 +7,7 @@ func createFromArray(list []interface{}) Set {
 	}
 	return set
 }
+
+func createFromFunc(f func(interface{}) (bool, error)) Set {
+	return functionSet{f}
+}
