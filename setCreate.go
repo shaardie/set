@@ -1,4 +1,4 @@
-package
+package set
 
 func createFromArray(list []interface{}) Set {
 	set := elementSet{make(map[interface{}]bool)}
