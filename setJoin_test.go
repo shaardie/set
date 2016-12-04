@@ -58,7 +58,7 @@ func TestJoin(t *testing.T) {
 	} else if !set.Countable() {
 		t.Error("Set not countable")
 	}
-	if set, err := Intersection(infinitegt3, infinitegt3); err != nil {
+	if set, err := Join(infinitegt3, infinitegt3); err != nil {
 		t.Error(err)
 	} else if set.Countable() {
 		t.Error("Set countable")
