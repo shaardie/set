@@ -13,24 +13,7 @@ var a = elementSet{
 	},
 }
 
-var b = elementSet{
-	map[interface{}]bool{
-		3: true,
-		4: true,
-		5: true,
-	},
-}
-
-var c = functionSet{
-	func(x interface{}) (bool, error) {
-		if v := reflect.ValueOf(x); v.Kind() == reflect.Int && v.Int() <= 3 {
-			return true, nil
-		}
-		return false, nil
-	},
-}
-
-var d = functionSet{
+var b = functionSet{
 	func(x interface{}) (bool, error) {
 		if v := reflect.ValueOf(x); v.Kind() == reflect.Int && v.Int() >= 3 {
 			return true, nil
@@ -40,7 +23,7 @@ var d = functionSet{
 }
 
 func TestDifferenceFirstCountable(t *testing.T) {
-	set, err := Difference(a, d)
+	set, err := Difference(a, b)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -57,7 +40,7 @@ func TestDifferenceFirstCountable(t *testing.T) {
 }
 
 func TestDifferenceFirstNotCountable(t *testing.T) {
-	set, err := Difference(d, a)
+	set, err := Difference(b, a)
 	if err != nil {
 		t.Fatal(err)
 	}
