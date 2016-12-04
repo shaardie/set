@@ -1,29 +1,11 @@
 package set
 
 import (
-	"reflect"
 	"testing"
 )
 
-var a = elementSet{
-	map[interface{}]bool{
-		1: true,
-		2: true,
-		3: true,
-	},
-}
-
-var b = functionSet{
-	func(x interface{}) (bool, error) {
-		if v := reflect.ValueOf(x); v.Kind() == reflect.Int && v.Int() >= 3 {
-			return true, nil
-		}
-		return false, nil
-	},
-}
-
 func TestDifferenceFirstCountable(t *testing.T) {
-	set, err := Difference(a, b)
+	set, err := Difference(finite123, infinitegt3)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -40,7 +22,7 @@ func TestDifferenceFirstCountable(t *testing.T) {
 }
 
 func TestDifferenceFirstNotCountable(t *testing.T) {
-	set, err := Difference(b, a)
+	set, err := Difference(infinitegt3, finite123)
 	if err != nil {
 		t.Fatal(err)
 	}
