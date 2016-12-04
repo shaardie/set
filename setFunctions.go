@@ -52,7 +52,6 @@ func Difference(a Set, b Set) (Set, error) {
 
 }
 
-
 func Join(a Set, b Set) (Set, error) {
 
 	// if a and b countable
