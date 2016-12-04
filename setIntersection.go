@@ -11,8 +11,8 @@ func Intersection(a Set, b Set) (Set, error) {
 		return finitIntersection(b, a)
 	}
 
-  // Both not countable
-  return infiniteIntersection(a, b)
+	// Both not countable
+	return infiniteIntersection(a, b)
 }
 
 func finitIntersection(a Set, b Set) (Set, error) {
