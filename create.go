@@ -1,8 +1,5 @@
 package set
 
-/*
-*/
-
 // CreateFromArray creates a countable Set from an arbitrary list of elements.
 //
 // Example:
