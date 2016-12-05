@@ -6,32 +6,32 @@ package set
 // not countable the resulting set is not also.
 func Difference(a Set, b Set) (Set, error) {
 	if a.Countable() {
-    return countableDifference(a,b)
+		return countableDifference(a, b)
 	}
-  return notCountableDifference(a,b)
+	return notCountableDifference(a, b)
 }
 
 // The set a is countable. Therfor the difference is calculated explicit as a
 // subset of a.
 func countableDifference(a Set, b Set) (Set, error) {
-    // Create new countable set
-		newSet := elementSet{make(map[interface{}]bool)}
+	// Create new countable set
+	newSet := elementSet{make(map[interface{}]bool)}
 
-    // Explicit list of elements in a
-		elements, err := a.List()
-		if err != nil {
+	// Explicit list of elements in a
+	elements, err := a.List()
+	if err != nil {
+		return newSet, err
+	}
+
+	// exclude all elements also in b
+	for element := range elements {
+		if yes, err := b.Contains(element); err != nil {
 			return newSet, err
+		} else if !yes {
+			newSet.elements[element] = true
 		}
-
-    // exclude all elements also in b
-		for element := range elements {
-			if yes, err := b.Contains(element); err != nil {
-				return newSet, err
-			} else if !yes {
-				newSet.elements[element] = true
-			}
-		}
-		return newSet, nil
+	}
+	return newSet, nil
 }
 
 // The set a is not countable. Therefor it is difficult to calculat the

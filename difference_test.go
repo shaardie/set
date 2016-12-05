@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestCountableDifferenceBroken(t * testing.T) {
+func TestCountableDifferenceBroken(t *testing.T) {
 	_, err := countableDifference(infinitegt3, finite123)
 	if err == nil {
 		t.Error("First set not countable but no error")
@@ -58,7 +58,7 @@ func TestNotCountableDifference(t *testing.T) {
 	}
 }
 
-func TestDifference(t*testing.T) {
+func TestDifference(t *testing.T) {
 	if set, err := Difference(finite123, infinitegt3); err != nil {
 		t.Error(err)
 	} else if !set.Countable() {
