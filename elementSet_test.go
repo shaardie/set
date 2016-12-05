@@ -39,7 +39,7 @@ func TestElementSetCountable(t *testing.T) {
 }
 
 func TestElementSetCardinality(t *testing.T) {
-	check_number := func(set elementSet, t *testing.T, should uint64) {
+	checkNumber := func(set elementSet, t *testing.T, should uint64) {
 		if number, err := set.Cardinality(); err != nil {
 			t.Fatal(err)
 		} else if number != should {
@@ -49,8 +49,8 @@ func TestElementSetCardinality(t *testing.T) {
 	}
 
 	set := elementSet{}
-	check_number(set, t, 0)
+	checkNumber(set, t, 0)
 
 	set.elements = map[interface{}]bool{1: true, 2: true, 3: true}
-	check_number(set, t, 3)
+	checkNumber(set, t, 3)
 }
