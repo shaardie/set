@@ -1,8 +1,6 @@
 package set
 
 // Create a set as the difference of the sets a and b.
-// See // https://en.wikipedia.org/wiki/Complement_%28set_theory%29 for more
-// information.
 //
 // If the set a is countable the resulting set is also countable and if a is
 // not countable the resulting set is not also.
