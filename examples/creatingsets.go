@@ -10,5 +10,5 @@ func main() {
 	set.CreateFromArray([]interface{}{true, "string", 42})
 
   // Creating a set from a function
-  set.CreateFromFunc(func(interface{}) (Set, error) { return false, nil }) // empty set
+  set.CreateFromFunc(func(interface{}) (bool, error) { return false, nil }) // empty set
 }
