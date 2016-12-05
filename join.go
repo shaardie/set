@@ -33,6 +33,7 @@ func countableJoin(a Set, b Set) (Set, error) {
 // set. Therefor the resulting set is not countable.
 func notCountableJoin(a Set, b Set) (Set, error) {
 	newContains := func(x interface{}) (bool, error) {
+    // Loop to return true for all elements contains in a or b
 		for _, set := range []Set{a, b} {
 			yes, err := set.Contains(x)
 			if err != nil {
