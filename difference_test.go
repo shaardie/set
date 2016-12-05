@@ -4,8 +4,15 @@ import (
 	"testing"
 )
 
-func TestDifferenceFirstCountable(t *testing.T) {
-	set, err := Difference(finite123, infinitegt3)
+func TestCountableDifferenceBroken(t * testing.T) {
+	_, err := countableDifference(infinitegt3, finite123)
+	if err == nil {
+		t.Error("First set not countable but no error")
+	}
+}
+
+func TestCountableDifference(t *testing.T) {
+	set, err := countableDifference(finite123, infinitegt3)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -21,8 +28,8 @@ func TestDifferenceFirstCountable(t *testing.T) {
 	}
 }
 
-func TestDifferenceFirstNotCountable(t *testing.T) {
-	set, err := Difference(infinitegt3, finite123)
+func TestNotCountableDifference(t *testing.T) {
+	set, err := notCountableDifference(infinitegt3, finite123)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -48,5 +55,18 @@ func TestDifferenceFirstNotCountable(t *testing.T) {
 		if !yes {
 			t.Errorf("%v not in set", element)
 		}
+	}
+}
+
+func TestDifference(t*testing.T) {
+	if set, err := Difference(finite123, infinitegt3); err != nil {
+		t.Error(err)
+	} else if !set.Countable() {
+		t.Error("Set not countable")
+	}
+	if set, err := Difference(infinitegt3, finite123); err != nil {
+		t.Error(err)
+	} else if set.Countable() {
+		t.Error("Set countable")
 	}
 }
