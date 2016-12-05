@@ -1,6 +1,6 @@
 package set
 
-// Creates a countable Set from an arbitrary list of elements.
+// CreateFromArray creates a countable Set from an arbitrary list of elements.
 func CreateFromArray(list []interface{}) Set {
 	set := elementSet{make(map[interface{}]bool)}
 	for _, element := range list {
@@ -9,7 +9,7 @@ func CreateFromArray(list []interface{}) Set {
 	return set
 }
 
-// Creates a non countable Set from a function which indicates
+// CreateFromFunc creates a non countable Set from a function which indicates
 // if the given element is contained in the set.
 //
 // To better support complex function it is possible to define an error which

@@ -1,6 +1,6 @@
 package set
 
-// Create a set as the intersection of the sets a and b.
+// Intersection creates a set as the intersection of the sets a and b.
 //
 // If a and b are countable the resulting set is also countable otherwise the
 // resulting set is not countable. So this function is an excellent way to make
