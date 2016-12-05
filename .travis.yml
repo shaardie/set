@@ -1,8 +1,14 @@
 language: go
 go:
-  - 1.3
-  - 1.6
-  - tip
+- 1.3
+- 1.6
+- tip
 notifications:
   email:
-    - sven@@haardiek.de
+  - sven@@haardiek.de
+env:
+  global:
+    secure: NqgetSxmqYJP8+38QRlJUKt4B5HWOfxRPOUXBE/V9/fSbrJWlPc4wRSU+Uum7USeHEwPzun8Zfw4o05oo96w+Cqf1Wy2J0esV2sL3kMj6nHSaBUKayOpfoFq+nAFwVnX1KMLTpncW8Se64w830v1FAgJtesw2clKkydbbBgNGFOtj1T9yY+3gJk72q/MSVO0PNJZ8AeTaxJ0bJTeWTvSbYFjCx2W//3O4OIBFELen1NZQiXemgTeklLQ7UIYemSNbtzNrxiEFuS1B6dX8S2eJgJW1uQSYYjSymoJod1KnlrCLvramurNJLgHy0Y04t3fIM5REMYNYBFDLmTXJprejIDZV/nPHyr3s3I2qDjXn+IS/4a8+ROs6wWVpQ2zDkENWdfLbNFW3dalqpFj4gAgJmEdnpRY4WpKFN5FznUa2KpA3TMdtWLJh8Zdyzrgg/E0EasTOafOcK/rkkFJdneMLAZndhwYcVAP+RmNqVkeSjBdaZB3FnoZKU1NdeQNPABjJOidvVRoFjaXMT9SabNPvqpGE6TKf6V/P5FfaPXvj0FbrLGGV9SGxco4hVMtzzoeIx7lYSw5uMXmToviWXKokBhhNUnGWWcCNUI9j3x9sp94RF2X5vsk59oj2PyiqbGWJLE7KELRleE5/VWY4GQscx1LDC2h/IxYQmEg4elFkD8=
+script:
+  - go test -v
+  - $HOME/gopath/bin/goveralls -repotoken $COVERALLS_TOKEN

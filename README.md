@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/shaardie/set.svg?branch=master)](https://travis-ci.org/shaardie/set)
+[![Coverage Status](https://coveralls.io/repos/github/shaardie/set/badge.svg)](https://coveralls.io/github/shaardie/set)
 [![GoDoc](https://godoc.org/github.com/shaardie/set?status.svg)](http://godoc.org/github.com/shaardie/set)
 
 # Description
