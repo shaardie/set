@@ -2,7 +2,7 @@ package set
 
 // Intersection creates a set as the intersection of the sets a and b.
 //
-// If a and b are countable the resulting set is also countable otherwise the
+// If a or b are countable the resulting set is also countable otherwise the
 // resulting set is not countable. So this function is an excellent way to make
 // not countable sets countable.
 func Intersection(a Set, b Set) (Set, error) {
@@ -18,7 +18,7 @@ func Intersection(a Set, b Set) (Set, error) {
 	return notCountableIntersection(a, b)
 }
 
-// Create a new set as an intersection of a and b. Here it is assumed that a is
+// Creates a new set as an intersection of a and b. Here it is assumed that a is
 // countable and therefor a countable set is created.
 func countableIntersection(a Set, b Set) (Set, error) {
 	// Create new countable set
@@ -41,7 +41,7 @@ func countableIntersection(a Set, b Set) (Set, error) {
 	return newSet, nil
 }
 
-// Create a new set as an intersection of a and b by using a function as a
+// Creates a new set as an intersection of a and b by using a function as a
 // definer. Although this function work on countable sets it is designed to
 // create intersection of two not countable functions.
 func notCountableIntersection(a Set, b Set) (Set, error) {
