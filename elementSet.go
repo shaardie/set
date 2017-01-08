@@ -1,11 +1,14 @@
 package set
 
 type elementSet struct {
-	elements map[interface{}]bool
+	elements map[interface{}]struct{}
 }
 
 func (set elementSet) Contains(x interface{}) (bool, error) {
-	return set.elements[x], nil
+	if _, ok := set.elements[x]; ok {
+		return true, nil
+	}
+	return false, nil
 }
 
 func (set elementSet) Countable() bool {
@@ -13,15 +16,7 @@ func (set elementSet) Countable() bool {
 }
 
 func (set elementSet) Cardinality() (uint64, error) {
-
-	var number uint64
-	for _, contained := range set.elements {
-		if contained {
-			number++
-		}
-	}
-
-	return number, nil
+	return uint64(len(set.elements)), nil
 }
 
 func (set elementSet) List() ([]interface{}, error) {
@@ -32,10 +27,8 @@ func (set elementSet) List() ([]interface{}, error) {
 	}
 
 	var list = make([]interface{}, 0, number)
-	for element, contained := range set.elements {
-		if contained {
-			list = append(list, element)
-		}
+	for element, _ := range set.elements {
+		list = append(list, element)
 	}
 	return list, nil
 }

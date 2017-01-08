@@ -22,7 +22,7 @@ func Intersection(a Set, b Set) (Set, error) {
 // countable and therefor a countable set is created.
 func countableIntersection(a Set, b Set) (Set, error) {
 	// Create new countable set
-	newSet := elementSet{make(map[interface{}]bool)}
+	newSet := elementSet{make(map[interface{}]struct{})}
 	// Explicit list of the elements of a
 	elements, err := a.List()
 	if err != nil {
@@ -35,7 +35,7 @@ func countableIntersection(a Set, b Set) (Set, error) {
 			return newSet, err
 		}
 		if yes {
-			newSet.elements[element] = true
+			newSet.elements[element] = struct{}{}
 		}
 	}
 	return newSet, nil

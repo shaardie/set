@@ -5,11 +5,10 @@ import (
 )
 
 func TestElementSetContains(t *testing.T) {
-	elements := map[interface{}]bool{
-		"string": true,
-		true:     false,
-		false:    true,
-		42:       true,
+	elements := map[interface{}]struct{}{
+		"string": struct{}{},
+		false:    struct{}{},
+		42:       struct{}{},
 	}
 
 	set := elementSet{elements}
@@ -51,6 +50,6 @@ func TestElementSetCardinality(t *testing.T) {
 	set := elementSet{}
 	checkNumber(set, t, 0)
 
-	set.elements = map[interface{}]bool{1: true, 2: true, 3: true}
+	set.elements = map[interface{}]struct{}{1: struct{}{}, 2: struct{}{}, 3: struct{}{}}
 	checkNumber(set, t, 3)
 }

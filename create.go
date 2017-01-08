@@ -2,9 +2,9 @@ package set
 
 // CreateFromArray creates a countable Set from an arbitrary list of elements.
 func CreateFromArray(list []interface{}) Set {
-	set := elementSet{make(map[interface{}]bool)}
+	set := elementSet{make(map[interface{}]struct{})}
 	for _, element := range list {
-		set.elements[element] = true
+		set.elements[element] = struct{}{}
 	}
 	return set
 }

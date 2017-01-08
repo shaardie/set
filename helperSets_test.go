@@ -5,18 +5,18 @@ import (
 )
 
 var finite123 = elementSet{
-	map[interface{}]bool{
-		1: true,
-		2: true,
-		3: true,
+	map[interface{}]struct{}{
+		1: struct{}{},
+		2: struct{}{},
+		3: struct{}{},
 	},
 }
 
 var finite345 = elementSet{
-	map[interface{}]bool{
-		3: true,
-		4: true,
-		5: true,
+	map[interface{}]struct{}{
+		3: struct{}{},
+		4: struct{}{},
+		5: struct{}{},
 	},
 }
 

@@ -15,7 +15,7 @@ func Join(a Set, b Set) (Set, error) {
 // countable.
 func countableJoin(a Set, b Set) (Set, error) {
 	// Create a countable set
-	newSet := elementSet{make(map[interface{}]bool)}
+	newSet := elementSet{make(map[interface{}]struct{})}
 	// Loop to add all elements from a and b explicit
 	for _, set := range []Set{a, b} {
 		list, err := set.List()
@@ -23,7 +23,7 @@ func countableJoin(a Set, b Set) (Set, error) {
 			return newSet, err
 		}
 		for _, element := range list {
-			newSet.elements[element] = true
+			newSet.elements[element] = struct{}{}
 		}
 	}
 	return newSet, nil

@@ -15,7 +15,7 @@ func Difference(a Set, b Set) (Set, error) {
 // subset of a.
 func countableDifference(a Set, b Set) (Set, error) {
 	// Create new countable set
-	newSet := elementSet{make(map[interface{}]bool)}
+	newSet := elementSet{make(map[interface{}]struct{})}
 
 	// Explicit list of elements in a
 	elements, err := a.List()
@@ -28,7 +28,7 @@ func countableDifference(a Set, b Set) (Set, error) {
 		if yes, err := b.Contains(element); err != nil {
 			return newSet, err
 		} else if !yes {
-			newSet.elements[element] = true
+			newSet.elements[element] = struct{}{}
 		}
 	}
 	return newSet, nil
