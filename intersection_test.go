@@ -4,20 +4,20 @@ import (
 	"testing"
 )
 
-func TestCountableIntersectionBroken(t *testing.T) {
-	if _, err := countableIntersection(infinitegt3, infinitegt3); err == nil {
-		t.Error("First set not countable but no error")
+func TestDefFiniteIntersectionBroken(t *testing.T) {
+	if _, err := defFiniteIntersection(infinitegt3, infinitegt3); err == nil {
+		t.Error("First set not definitely finite but no error")
 	}
 }
 
-func TestCountableIntersection(t *testing.T) {
-	set, err := countableIntersection(finite123, infinitegt3)
+func TestDefFiniteIntersection(t *testing.T) {
+	set, err := defFiniteIntersection(finite123, infinitegt3)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !set.Countable() {
-		t.Fatal("Set should be countable")
+	if !set.DefinitelyFinite() {
+		t.Fatal("Set should be definitely finite")
 	}
 
 	if list, err := set.List(); err != nil {
@@ -27,8 +27,8 @@ func TestCountableIntersection(t *testing.T) {
 	}
 }
 
-func TestNotCountableIntersection(t *testing.T) {
-	set, err := notCountableIntersection(infinitegt3, infinitelt3)
+func TestNotDefFiniteIntersection(t *testing.T) {
+	set, err := notDefFiniteIntersection(infinitegt3, infinitelt3)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -51,17 +51,17 @@ func TestNotCountableIntersection(t *testing.T) {
 func TestIntersection(t *testing.T) {
 	if set, err := Intersection(finite123, infinitegt3); err != nil {
 		t.Error(err)
-	} else if !set.Countable() {
-		t.Error("Set not countable")
+	} else if !set.DefinitelyFinite() {
+		t.Error("Set not definitely finite")
 	}
 	if set, err := Intersection(infinitegt3, finite123); err != nil {
 		t.Error(err)
-	} else if !set.Countable() {
-		t.Error("Set not countable")
+	} else if !set.DefinitelyFinite() {
+		t.Error("Set not definitely finite")
 	}
 	if set, err := Intersection(infinitegt3, infinitegt3); err != nil {
 		t.Error(err)
-	} else if set.Countable() {
-		t.Error("Set countable")
+	} else if set.DefinitelyFinite() {
+		t.Error("Set definitely finite")
 	}
 }

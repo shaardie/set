@@ -2,26 +2,26 @@ package set
 
 // Intersection creates a set as the intersection of the sets a and b.
 //
-// If a or b are countable the resulting set is also countable otherwise the
-// resulting set is not countable. So this function is an excellent way to make
-// not countable sets countable.
+// If a or b are definitely finite the resulting set is also definitely finite.
+// Otherwise the resulting set is not definitely finite.
+// So this function is an excellent way to make sets definitely finite.
 func Intersection(a Set, b Set) (Set, error) {
-	// a is countable
-	if a.Countable() {
-		return countableIntersection(a, b)
+	// a is definitely finite
+	if a.DefinitelyFinite() {
+		return defFiniteIntersection(a, b)
 	}
-	// b is countable
-	if b.Countable() {
-		return countableIntersection(b, a)
+	// b is definitely finite
+	if b.DefinitelyFinite() {
+		return defFiniteIntersection(b, a)
 	}
-	// Both not countable
-	return notCountableIntersection(a, b)
+	// Both not definitely finite
+	return notDefFiniteIntersection(a, b)
 }
 
-// Creates a new set as an intersection of a and b. Here it is assumed that a is
-// countable and therefor a countable set is created.
-func countableIntersection(a Set, b Set) (Set, error) {
-	// Create new countable set
+// Creates a new set as an intersection of a and b.
+// Here it is assumed that a is definitely finite and therefor a definitely finite set is created.
+func defFiniteIntersection(a Set, b Set) (Set, error) {
+	// Create new definitely finite set
 	newSet := elementSet{make(map[interface{}]struct{})}
 	// Explicit list of the elements of a
 	elements, err := a.List()
@@ -41,11 +41,10 @@ func countableIntersection(a Set, b Set) (Set, error) {
 	return newSet, nil
 }
 
-// Creates a new set as an intersection of a and b by using a function as a
-// definer. Although this function work on countable sets it is designed to
-// create intersection of two not countable functions.
-func notCountableIntersection(a Set, b Set) (Set, error) {
-	// both not countable
+// Creates a new set as an intersection of a and b by using a function as a definer.
+// Although this function works on definitely finite sets it is designed to create intersections of two not definitely finite functions.
+func notDefFiniteIntersection(a Set, b Set) (Set, error) {
+	// both not definitely finite
 	newContains := func(x interface{}) (bool, error) {
 		if yes, err := a.Contains(x); err != nil {
 			return false, err
