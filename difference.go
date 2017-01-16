@@ -2,19 +2,18 @@ package set
 
 // Difference creates a set as the difference of the sets a and b.
 //
-// If the set a is countable the resulting set is also countable and if a is
-// not countable the resulting set is not also.
+// If the set a is definitely finite the resulting set is also definitely finite and if a is not definitely finite the resulting set is not also.
 func Difference(a Set, b Set) (Set, error) {
-	if a.Countable() {
-		return countableDifference(a, b)
+	if a.DefinitelyFinite() {
+		return defFiniteDifference(a, b)
 	}
-	return notCountableDifference(a, b)
+	return notDefFiniteDifference(a, b)
 }
 
-// The set a is countable. Therfor the difference is calculated explicit as a
-// subset of a.
-func countableDifference(a Set, b Set) (Set, error) {
-	// Create new countable set
+// The set a is definitely finite.
+// Therfore the difference is calculated explicit as a subset of a.
+func defFiniteDifference(a Set, b Set) (Set, error) {
+	// Create new definitely finite set
 	newSet := elementSet{make(map[interface{}]struct{})}
 
 	// Explicit list of elements in a
@@ -34,9 +33,10 @@ func countableDifference(a Set, b Set) (Set, error) {
 	return newSet, nil
 }
 
-// The set a is not countable. Therefor it is difficult to calculat the
-// difference explicit. We use a function to describe it.
-func notCountableDifference(a Set, b Set) (Set, error) {
+// The set a is not definitely finite.
+// Therefore it is difficult to calculate the difference explicitly.
+// We use a function to describe it.
+func notDefFiniteDifference(a Set, b Set) (Set, error) {
 	newContains := func(x interface{}) (bool, error) {
 		if yes, err := a.Contains(x); err != nil {
 			return false, err
