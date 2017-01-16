@@ -19,7 +19,7 @@ func TestDefFiniteJoin(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !set.Countable() {
+	if !set.DefinitelyFinite() {
 		t.Fatal("Set should be definitely finite")
 	}
 
@@ -55,12 +55,12 @@ func TestNotDefFiniteJoin(t *testing.T) {
 func TestJoin(t *testing.T) {
 	if set, err := Join(finite123, finite123); err != nil {
 		t.Error(err)
-	} else if !set.Countable() {
+	} else if !set.DefinitelyFinite() {
 		t.Error("Set not definitely finite")
 	}
 	if set, err := Join(infinitegt3, infinitegt3); err != nil {
 		t.Error(err)
-	} else if set.Countable() {
+	} else if set.DefinitelyFinite() {
 		t.Error("Set definitely finite")
 	}
 }
