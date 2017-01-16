@@ -37,6 +37,13 @@ func TestElementSetCountable(t *testing.T) {
 	}
 }
 
+func TestElementSetDefinitelyFinite(t *testing.T) {
+	set := elementSet{}
+	if !set.DefinitelyFinite() {
+		t.Error("elementSet not definitely finite...ridiculous!")
+	}
+}
+
 func TestElementSetCardinality(t *testing.T) {
 	checkNumber := func(set elementSet, t *testing.T, should uint64) {
 		if number, err := set.Cardinality(); err != nil {

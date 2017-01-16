@@ -52,6 +52,13 @@ func TestFunctionSetCountable(t *testing.T) {
 	}
 }
 
+func TestFunctionSetDefFinite(t *testing.T) {
+	a := functionSet{}
+	if a.DefinitelyFinite() {
+		t.Error("This should not be definitely finite")
+	}
+}
+
 func TestFunctionSetCardinality(t *testing.T) {
 	a := functionSet{}
 	if _, err := a.Cardinality(); err == nil {
