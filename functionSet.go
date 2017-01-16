@@ -13,6 +13,10 @@ func (set functionSet) Contains(x interface{}) (bool, error) {
 }
 
 func (set functionSet) Countable() bool {
+	return set.DefinitelyFinite()
+}
+
+func (set functionSet) DefinitelyFinite() bool {
 	return false
 }
 

@@ -12,6 +12,10 @@ func (set elementSet) Contains(x interface{}) (bool, error) {
 }
 
 func (set elementSet) Countable() bool {
+	return set.DefinitelyFinite()
+}
+
+func (set elementSet) DefinitelyFinite() bool {
 	return true
 }
 
