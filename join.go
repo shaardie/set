@@ -11,10 +11,10 @@ func Join(a Set, b Set) (Set, error) {
 	return notDefFiniteJoin(a, b)
 }
 
-// Creates a new set as an join of a and b. Here is assumed that a and b are
-// countable.
+// Creates a new set as an join of a and b.
+// Here is assumed that a and b are definitely finite.
 func defFiniteJoin(a Set, b Set) (Set, error) {
-	// Create a countable set
+	// Create a definitely finite set
 	newSet := elementSet{make(map[interface{}]struct{})}
 	// Loop to add all elements from a and b explicit
 	for _, set := range []Set{a, b} {
@@ -29,8 +29,8 @@ func defFiniteJoin(a Set, b Set) (Set, error) {
 	return newSet, nil
 }
 
-// Creates a new set as the join of a and b by using a function to define the
-// set. Therefor the resulting set is not countable.
+// Creates a new set as the join of a and b by using a function to define the set.
+// Therefore the resulting set is not definitely finite.
 func notDefFiniteJoin(a Set, b Set) (Set, error) {
 	newContains := func(x interface{}) (bool, error) {
 		// Loop to return true for all elements contains in a or b
