@@ -2,25 +2,25 @@ package set
 
 import "testing"
 
-func TestCountableJoinBroken(t *testing.T) {
-	if _, err := countableJoin(infinitelt3, finite123); err == nil {
+func TestDefFiniteJoinBroken(t *testing.T) {
+	if _, err := defFiniteJoin(infinitelt3, finite123); err == nil {
 		t.Error("No Error")
 	}
-	if _, err := countableJoin(finite123, infinitegt3); err == nil {
+	if _, err := defFiniteJoin(finite123, infinitegt3); err == nil {
 		t.Error("No Error")
 	}
-	if _, err := countableJoin(infinitegt3, infinitelt3); err == nil {
+	if _, err := defFiniteJoin(infinitegt3, infinitelt3); err == nil {
 		t.Error("No Error")
 	}
 }
 
-func TestCountableJoin(t *testing.T) {
-	set, err := countableJoin(finite123, finite345)
+func TestDefFiniteJoin(t *testing.T) {
+	set, err := defFiniteJoin(finite123, finite345)
 	if err != nil {
 		t.Fatal(err)
 	}
 	if !set.Countable() {
-		t.Fatal("Set should be countable")
+		t.Fatal("Set should be definitely finite")
 	}
 
 	if number, err := set.Cardinality(); err != nil {
@@ -38,8 +38,8 @@ func TestCountableJoin(t *testing.T) {
 	}
 }
 
-func TestNotCountableJoin(t *testing.T) {
-	set, err := notCountableJoin(infinitegt3, finite123)
+func TestNotDefFiniteJoin(t *testing.T) {
+	set, err := notDefFiniteJoin(infinitegt3, finite123)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -56,11 +56,11 @@ func TestJoin(t *testing.T) {
 	if set, err := Join(finite123, finite123); err != nil {
 		t.Error(err)
 	} else if !set.Countable() {
-		t.Error("Set not countable")
+		t.Error("Set not definitely finite")
 	}
 	if set, err := Join(infinitegt3, infinitegt3); err != nil {
 		t.Error(err)
 	} else if set.Countable() {
-		t.Error("Set countable")
+		t.Error("Set definitely finite")
 	}
 }

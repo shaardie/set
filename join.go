@@ -2,18 +2,18 @@ package set
 
 // Join creates a set as the join of the sets a and b.
 //
-// If a and b are countable the resulting set is also countable otherwise the
-// resulting set not countable.
+// If a and b are definitely finite the resulting set is also definitely finite.
+// Otherwise the resulting set not definitely finite.
 func Join(a Set, b Set) (Set, error) {
-	if a.Countable() && b.Countable() {
-		return countableJoin(a, b)
+	if a.DefinitelyFinite() && b.DefinitelyFinite() {
+		return defFiniteJoin(a, b)
 	}
-	return notCountableJoin(a, b)
+	return notDefFiniteJoin(a, b)
 }
 
 // Creates a new set as an join of a and b. Here is assumed that a and b are
 // countable.
-func countableJoin(a Set, b Set) (Set, error) {
+func defFiniteJoin(a Set, b Set) (Set, error) {
 	// Create a countable set
 	newSet := elementSet{make(map[interface{}]struct{})}
 	// Loop to add all elements from a and b explicit
@@ -31,7 +31,7 @@ func countableJoin(a Set, b Set) (Set, error) {
 
 // Creates a new set as the join of a and b by using a function to define the
 // set. Therefor the resulting set is not countable.
-func notCountableJoin(a Set, b Set) (Set, error) {
+func notDefFiniteJoin(a Set, b Set) (Set, error) {
 	newContains := func(x interface{}) (bool, error) {
 		// Loop to return true for all elements contains in a or b
 		for _, set := range []Set{a, b} {
